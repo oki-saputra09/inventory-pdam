@@ -9,11 +9,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('roles', function (Blueprint $table) {
-            if (!Schema::hasColumn('roles', 'name')) {
+        if (!Schema::hasTable('roles')) {
+            Schema::create('roles', function (Blueprint $table) {
+                $table->id();
+                $table->string('name')->unique();
+                $table->timestamps();
+            });
+        } elseif (!Schema::hasColumn('roles', 'name')) {
+            Schema::table('roles', function (Blueprint $table) {
                 $table->string('name')->unique()->after('id');
-            }
-        });
+            });
+        }
 
         DB::table('roles')->updateOrInsert(
             ['name' => 'admin'],
