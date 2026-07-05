@@ -27,5 +27,8 @@ php artisan view:cache
 echo "==> Running database migrations"
 php artisan migrate --force
 
+echo "==> Seeding default roles & admin user (safe to skip if exists)"
+php artisan db:seed --force || echo "Seeding skipped or already done."
+
 echo "==> Starting server on port ${PORT:-8080}"
 exec php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
