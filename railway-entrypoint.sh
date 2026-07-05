@@ -5,9 +5,11 @@ echo "==> Preparing storage & cache directories"
 mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cache database
 chmod -R 775 storage bootstrap/cache database || true
 
-echo "==> Generating APP_KEY if missing"
+echo "==> Checking APP_KEY"
 if [ -z "$APP_KEY" ]; then
-  php artisan key:generate --force
+  echo "ERROR: APP_KEY is not set. Please set it in Railway Variables."
+  echo "Generate one locally with: openssl rand -base64 32"
+  exit 1
 fi
 
 echo "==> Linking storage"
