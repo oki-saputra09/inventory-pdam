@@ -13,7 +13,11 @@ if [ -z "$APP_KEY" ]; then
 fi
 
 echo "==> Linking storage"
-php artisan storage:link || true
+if [ ! -L public/storage ]; then
+  php artisan storage:link
+else
+  echo "Storage link already exists, skipping."
+fi
 
 echo "==> Caching config/routes/views"
 php artisan config:cache

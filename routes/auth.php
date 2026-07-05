@@ -53,18 +53,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::get('profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
-
-    Route::patch('profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
-
-    Route::post('profile/foto', [ProfileController::class, 'updateFoto'])
-        ->name('profile.foto.update');
-
-    Route::delete('profile', [ProfileController::class, 'destroy'])
-        ->name('profile.destroy');
-
     Route::put('password', [PasswordController::class, 'update'])
         ->name('password.update');
 
