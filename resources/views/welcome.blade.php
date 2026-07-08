@@ -798,7 +798,7 @@
                             <i class="bi bi-envelope-fill"></i>
                             <div>
                                 <strong>Email</strong><br>
-                                invendam@gmail.com
+                                pdambengkayangofficial@gmail.com
                             </div>
                         </div>
                         <div class="contact-item">
