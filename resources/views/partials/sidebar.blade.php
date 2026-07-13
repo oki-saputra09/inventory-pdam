@@ -80,6 +80,14 @@
                 Permintaan Barang
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('admin.pengembalian-barang.index') }}"
+               class="{{ request()->routeIs('admin.pengembalian-barang.*') ? 'active' : '' }}">
+                <i class="bi bi-arrow-counterclockwise"></i>
+                Pengembalian Barang
+            </a>
+        </li>
     </ul>
 
     <div class="menu-title">Laporan</div>

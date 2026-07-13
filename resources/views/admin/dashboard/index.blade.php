@@ -724,6 +724,13 @@
                     Permintaan Barang
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('admin.pengembalian-barang.index') }}" class="{{ request()->routeIs('admin.pengembalian-barang.*') ? 'active' : '' }}">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    Pengembalian Barang
+                </a>
+            </li>
         </ul>
 
         <div class="menu-title">Laporan</div>
@@ -881,6 +888,21 @@
                     <div class="card-soft stat-card">
                         <div class="stat-top">
                             <div>
+                                <div class="stat-label">Pengembalian Masuk</div>
+                                <h3 class="stat-value">{{ $jumlahPengembalianMenunggu ?? 0 }}</h3>
+                            </div>
+
+                            <div class="stat-icon icon-blue">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card-soft stat-card">
+                        <div class="stat-top">
+                            <div>
                                 <div class="stat-label">Stok Minimum</div>
                                 <h3 class="stat-value">{{ $jumlahNotifikasiStok ?? 0 }}</h3>
                             </div>
@@ -928,6 +950,11 @@
                                 <i class="bi bi-file-earmark-bar-graph"></i>
                                 <span>Laporan</span>
                             </a>
+
+                            <a href="{{ route('admin.pengembalian-barang.index') }}" class="quick-item">
+                                <i class="bi bi-arrow-counterclockwise"></i>
+                                <span>Pengembalian</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -958,6 +985,18 @@
                                 <div class="notif-item success">
                                     <h6>Tidak ada permintaan baru</h6>
                                     <p>Semua permintaan barang sudah diproses.</p>
+                                </div>
+                            @endif
+
+                            @if (($jumlahPengembalianMenunggu ?? 0) > 0)
+                                <div class="notif-item warning">
+                                    <h6>Pengembalian barang baru</h6>
+                                    <p>Ada {{ $jumlahPengembalianMenunggu }} pengembalian barang yang menunggu persetujuan.</p>
+                                </div>
+                            @else
+                                <div class="notif-item success">
+                                    <h6>Tidak ada pengembalian baru</h6>
+                                    <p>Semua pengembalian barang sudah diproses.</p>
                                 </div>
                             @endif
                         </div>

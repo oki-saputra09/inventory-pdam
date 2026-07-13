@@ -842,6 +842,20 @@
                     Buat Permintaan
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('staff.pengembalian-barang.index') }}">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                    Pengembalian Barang
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('staff.pengembalian-barang.create') }}">
+                    <i class="bi bi-plus-circle-dotted"></i>
+                    Ajukan Pengembalian
+                </a>
+            </li>
         </ul>
 
         <div class="menu-title">Akun</div>

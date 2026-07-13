@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Barang;
 use App\Models\PermintaanBarang;
+use App\Models\PengembalianBarang;
 use App\Models\Supplier;
 use App\Models\Aktivitas;
 
@@ -19,6 +20,8 @@ class DashboardController extends Controller
         $jumlahNotifikasiStok = Barang::whereColumn('stok', '<=', 'minimum_stok')->count();
 
         $jumlahPermintaanMenunggu = PermintaanBarang::where('status', 'Menunggu')->count();
+
+        $jumlahPengembalianMenunggu = PengembalianBarang::where('status', 'Menunggu')->count();
 
         $barangStokMinimum = Barang::whereColumn('stok', '<=', 'minimum_stok')
             ->orderBy('stok', 'asc')
@@ -36,6 +39,7 @@ class DashboardController extends Controller
             'totalSupplier',
             'jumlahNotifikasiStok',
             'jumlahPermintaanMenunggu',
+            'jumlahPengembalianMenunggu',
             'barangStokMinimum',
             'aktivitasHariIni'
         ));

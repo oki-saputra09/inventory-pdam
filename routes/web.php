@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\SupplierController as AdminSupplierController;
 use App\Http\Controllers\Admin\BarangMasukController as AdminBarangMasukController;
 use App\Http\Controllers\Admin\BarangKeluarController as AdminBarangKeluarController;
 use App\Http\Controllers\Admin\PermintaanBarangController as AdminPermintaanBarangController;
+use App\Http\Controllers\Admin\PengembalianBarangController as AdminPengembalianBarangController;
 use App\Http\Controllers\Admin\LaporanController as AdminLaporanController;
 use App\Http\Controllers\Admin\AktivitasController as AdminAktivitasController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -42,6 +43,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 */
 use App\Http\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Http\Controllers\Staff\PermintaanBarangController as StaffPermintaanBarangController;
+use App\Http\Controllers\Staff\PengembalianBarangController as StaffPengembalianBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -383,6 +385,23 @@ Route::middleware(['auth'])->group(function () {
 
             /*
             |--------------------------------------------------------------------------
+            | Pengembalian Barang Admin
+            |--------------------------------------------------------------------------
+            */
+            Route::get('/pengembalian-barang', [AdminPengembalianBarangController::class, 'index'])
+                ->name('pengembalian-barang.index');
+
+            Route::put('/pengembalian-barang/{pengembalianBarang}/setuju', [AdminPengembalianBarangController::class, 'setuju'])
+                ->name('pengembalian-barang.setuju');
+
+            Route::put('/pengembalian-barang/{pengembalianBarang}/tolak', [AdminPengembalianBarangController::class, 'tolak'])
+                ->name('pengembalian-barang.tolak');
+
+            Route::delete('/pengembalian-barang/{pengembalianBarang}', [AdminPengembalianBarangController::class, 'destroy'])
+                ->name('pengembalian-barang.destroy');
+
+            /*
+            |--------------------------------------------------------------------------
             | Laporan dan Notifikasi Stok
             |--------------------------------------------------------------------------
             */
@@ -468,6 +487,29 @@ Route::middleware(['auth'])->group(function () {
 
             Route::delete('/permintaan-barang/{permintaanBarang}', [StaffPermintaanBarangController::class, 'destroy'])
                 ->name('permintaan-barang.destroy');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Pengembalian Barang Staff
+            |--------------------------------------------------------------------------
+            */
+            Route::get('/pengembalian-barang', [StaffPengembalianBarangController::class, 'index'])
+                ->name('pengembalian-barang.index');
+
+            Route::get('/pengembalian-barang/create', [StaffPengembalianBarangController::class, 'create'])
+                ->name('pengembalian-barang.create');
+
+            Route::post('/pengembalian-barang', [StaffPengembalianBarangController::class, 'store'])
+                ->name('pengembalian-barang.store');
+
+            Route::get('/pengembalian-barang/{pengembalianBarang}/edit', [StaffPengembalianBarangController::class, 'edit'])
+                ->name('pengembalian-barang.edit');
+
+            Route::put('/pengembalian-barang/{pengembalianBarang}', [StaffPengembalianBarangController::class, 'update'])
+                ->name('pengembalian-barang.update');
+
+            Route::delete('/pengembalian-barang/{pengembalianBarang}', [StaffPengembalianBarangController::class, 'destroy'])
+                ->name('pengembalian-barang.destroy');
         });
 });
 
